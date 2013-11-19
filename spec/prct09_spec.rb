@@ -4,16 +4,20 @@
  describe Prct09 do   
 	
 	before :each do
-	  @m = Matriz
+	  @m = Matriz_densa
 	  @f = Fraccion
 	end
 	
 	describe "Inicializacion de la matriz" do
 
-		it "Creacion correcta de la matriz" do
+		it "Creacion correcta de la matriz densa" do
 	        	lambda { @m.new(1, 0)}.should raise_error(IndexError)
 		        lambda { @m.new(-1, 1, 1)}.should raise_error(IndexError)
 			lambda { @m.new(1, 1, 1, 2)}.should raise_error(IndexError)
+		end
+		
+		it "Creacion correcta de la matriz dispersa 60% de ceros" do
+		
 		end
 
 	end	
@@ -41,6 +45,18 @@
 			(@m.new(2,2, @f.new(1,2), @f.new(1,3), @f.new(1,4), @f.new(1,5)) * @m.new(2,2, @f.new(1,2), @f.new(2,3), @f.new(3,4), @f.new(4,5))).should == @m.new(2,2,@f.new(1,2), @f.new(3,5), @f.new(11,40), @f.new(49,150))
 		end
 	end
+	
+	describe "Operaciones con matriz hibridas" do
+		it "Suma de matrices entera-racional, racional-entera" do
+			
+		end
+	
+		it "Multiplicar matrices entera-racional, racional-entera" do
+	 		
+		end
+		
+	end
+		
 
 
  end
