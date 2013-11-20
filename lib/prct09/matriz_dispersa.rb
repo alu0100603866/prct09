@@ -1,7 +1,6 @@
 require 'prct09/matriz.rb'
 
 
-require './matriz.rb'
 
 class Matriz_dispersa < Matriz
 	
