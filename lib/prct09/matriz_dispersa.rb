@@ -8,31 +8,34 @@ class Matriz_dispersa < Matriz
 
 	
 	#INITIALIZE
-	def initialize(fil, col, *valor)
-		@fil, @col = fil, col
-		@datos = Array.new
+	
+	def initialize (*args) # nC:meros de argumentos variables *
+		raise IndexError unless ((args[0] > 0) && (args[1] > 0)) # Error, si dimensiC3n <0
+		fil = args[0]
+		col = args[1]
+		@dat = Array.new
 		@pos_fil = Array.new
 		@pos_col = Array.new
-		contador = 0
+		contador = 2
 		contador2 = 0
+	
 		
-		
-		for i in 0...fil do
-			for j in 0...col do
-				if(valor[contador] != 0)
-					@datos[contador2] = valor[contador]
-					contador2+=1
+		for i in (0...fil) 
+			for j in (0...col) 
+				z = args[contador]
+
+				if(z != 0)
+					@dat[contador2] = z
 					@pos_fil[contador2] = i
 					@pos_col[contador2] = j
-					
-# 					puts "posicion #{@pos_fil[contador2]}, #{@pos_col[contador2]}" #chivato
-					
-# 				else
+										
+					contador2+=1
 				end
 				contador+=1
 			end
 		end
 		
+		super(fil,col)
 # 		#Chivato
 # 		for i in 0...pos_fil.size do
 # 			puts "posicion initialize #{@pos_fil[i]},#{@pos_col[i]}"
@@ -57,7 +60,7 @@ class Matriz_dispersa < Matriz
 # 				puts "posicion #{@pos_fil[contador]}, #{@pos_col[contador]}" #chivato
 				
 				if((@pos_fil[contador] == i) && (@pos_col[contador] == j))
-					cadena << "#{@datos[contador_m]} "
+					cadena << "#{@dat[contador_m]} "
 					contador+=1
 					contador_m+=1
 				else
@@ -86,12 +89,17 @@ class Matriz_dispersa < Matriz
 	def +(other)
 		raise IndexError unless ((self.fil == other.fil) && (self.col == other.col))
 # 		if((self.fil == other.fil) && (self.col == other.col))
+		contador = 0
+		suma = Matriz.new(self.fil, self.col)
 		
-		suma = Matriz_dispersa.new(self.fil, self.col)
-		
-			for i in 0...fil do
-				for j in 0...col do
-					suma[i][j] = self[i][j] + other[i][j]
+			for i in 0...self.fil do
+				for j in 0...self.col do
+					if (@pos_fil[contador] == i && @pos_col[contador] == j)
+						suma[i][j] = @dat[contador] + other[i][j] 
+						contador += 1
+					else
+						suma[i][j] = other[i][j]
+					end
 				end
 			end
 			
@@ -142,11 +150,11 @@ class Matriz_dispersa < Matriz
 	#MAYOR
 	def mayor
 		contador = 0
-		for i in 0...@datos.size do
+		for i in 0...@dat.size do
 			if (may == 0)
-				may = @datos[contador]
-			elsif (may < @datos[contador])
-				may = @datos[contador]
+				may = @dat[contador]
+			elsif (may < @dat[contador])
+				may = @dat[contador]
 			end
 			contador += 1
 		end
@@ -159,11 +167,11 @@ class Matriz_dispersa < Matriz
 	#MENOR
 	def menor
 		contador = 0
-		for i in 0...@datos.size do
+		for i in 0...@dat.size do
 			if (men == 0)
-				men = @datos[contador]
-			elsif (men > @datos[contador])
-				men = @datos[contador]
+				men = @dat[contador]
+			elsif (men > @dat[contador])
+				men = @dat[contador]
 			end
 			contador += 1
 		end

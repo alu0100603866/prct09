@@ -97,7 +97,6 @@ class Matriz_densa < Matriz
 		end
 		
 	
-	
 end
 
 

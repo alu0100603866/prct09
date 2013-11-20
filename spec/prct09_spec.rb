@@ -4,7 +4,9 @@
  describe Prct09 do   
 	
 	before :each do
+	  @m1 = Matriz
 	  @m = Matriz_densa
+	  @md = Matriz_dispersa
 	  @f = Fraccion
 	end
 	
@@ -13,7 +15,7 @@
 		it "Creacion correcta de la matriz densa" do
 	        	lambda { @m.new(1, 0)}.should raise_error(IndexError)
 		        lambda { @m.new(-1, 1, 1)}.should raise_error(IndexError)
-			lambda { @m.new(1, 1, 1, 2)}.should raise_error(IndexError)
+				lambda { @m.new(1, 1, 1, 2)}.should raise_error(IndexError)
 		end
 		
 		it "Creacion correcta de la matriz dispersa 60% de ceros" do
@@ -30,6 +32,11 @@
 		end
 		it "Suma de matrices en forma de fraccion" do
 			(@m.new(2,2, @f.new(1,2), @f.new(1,3), @f.new(1,4), @f.new(1,5)) + @m.new(2,2, @f.new(1,2), @f.new(2,3), @f.new(3,4), @f.new(4,5))).should == @m.new(2,2,@f.new(1,1))
+		end
+		
+		it "Suma de matrices densa + dispersa, dispersa + densa" do
+			#(@m.new(2,2,2) + @md.new(2,2,0,0,0,1)).should == @m1.new(2,2,2,2,2,3)   
+			(@md.new(2,3,0,0,0,4,0,0) + @m.new(2,3,1)).should == @m.new(2,3,1,1,1,5,1,1)
 		end
 	
 		it "Resta de matrices" do
@@ -57,6 +64,6 @@
 		
 	end
 		
-
+	
 
  end
