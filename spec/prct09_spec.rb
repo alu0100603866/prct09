@@ -18,10 +18,6 @@
 				lambda { @m.new(1, 1, 1, 2)}.should raise_error(IndexError)
 		end
 		
-		it "Creacion correcta de la matriz dispersa 60% de ceros" do
-		
-		end
-
 	end	
 	
 	describe "Operaciones con matrices" do
@@ -46,6 +42,15 @@
 		it "Resta de matrices" do
 			(@m.new(2,2,2,3,4,5) - @m.new(2,2,1)).should == @m.new(2,2,1,2,3,4)
 			(@m.new(3,3,-4) - @m.new(3,3,-4)).should == @m.new(3,3,0,0,0,0,0,0,0,0,0)     
+		end
+		
+		it "Resta de matrices densa - dispersa, dispersa - densa" do
+			(@m.new(2,2,2) - @md.new(2,2,0,0,0,1)).should == @m1.new(2,2,2,2,2,1)   
+			(@md.new(2,3,0,0,0,4,0,0) - @m.new(2,3,1)).should == @m.new(2,3,-1,-1,-1,3,-1,-1)
+		end
+		
+		it "Resta de matrices dispersa - dispersa" do
+			(@md.new(2,2,0,0,1,1) - @md.new(2,2,0,0,0,1)).should == @m1.new(2,2,0,0,1,0)   
 		end
 	
 		it "Multiplicar matrices" do

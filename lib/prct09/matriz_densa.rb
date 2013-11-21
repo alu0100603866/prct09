@@ -38,17 +38,23 @@ class Matriz_densa < Matriz
 
 
         def -(m)
-                raise IndexError unless ((self.fil == m.fil) && (self.col == m.col)) #Las dimensiones tienen que ser iguales
+			if(m.instance_of? Matriz_dispersa)
+				resta = Matriz_densa.new(fil,col)
+				return resta - (m - self) 
+				
+					
+			else
+				raise IndexError unless ((self.fil == m.fil) && (self.col == m.col)) #Las dimensiones tienen que ser iguales
+				resta = Matriz.new(self.fil, self.col)
 
-                resta = Matriz.new(self.fil, self.col)
-
-                for i in (0...self.fil)
-                        for j in (0...self.col)
-                                resta[i][j] = self[i][j] - m[i][j]
-                        end
-                end  
-
-                return resta
+				for i in (0...self.fil)
+					for j in (0...self.col)
+						resta[i][j] = self[i][j] - m[i][j]
+					end
+				end  
+			end
+			return resta
+				
         end
 
 

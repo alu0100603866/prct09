@@ -119,20 +119,34 @@ class Matriz_dispersa < Matriz
 	
 	#RESTA
 	def -(other)
-		raise IndexError unless ((self.fil == m.fil) && (self.col == m.col))
-# 		if((self.fil == other.fil) && (self.col == other.col))
+		if(other.instance_of? Matriz_dispersa)
+			resta = Matriz_densa.new(fil,col)
+			x = Matriz_densa.new(fil,col)
+			resta = self - resta
+			resta = other - resta
+			return x - resta
+                        
+		else
+			raise IndexError unless ((self.fil == other.fil) && (self.col == other.col))
+#			if((self.fil == other.fil) && (self.col == other.col))
+			contador = 0
+			resta = Matriz.new(self.fil, self.col)
 		
-		resta = Matriz_dispersa.new(self.fil, self.col)
-		
-			for i in 0...fil do
-				for j in 0...col do
-					resta[i][j] = self[i][j] - other[i][j]
+			for i in 0...self.fil do
+				for j in 0...self.col do
+					if (@pos_fil[contador] == i && @pos_col[contador] == j)
+						resta[i][j] = @dat[contador] - other[i][j] 
+						contador += 1
+					else
+						resta[i][j] = -other[i][j]
+					end
 				end
 			end
-			
+		end
 # 		end
 		return resta
 	end
+
 	
 	
 	#MULTIPLICACION
