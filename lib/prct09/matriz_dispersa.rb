@@ -152,13 +152,22 @@ class Matriz_dispersa < Matriz
 	#MULTIPLICACION
 	def *(other)
 		raise IndexError unless (self.col == other.fil) #num de col de la primera tiene que ser igual a num de fil de lasegunda.
-
-		mult = Matriz_dispersa.new(self.fil, other.col)
+		
+		
+		if (other.instance_of? Matriz_dispersa)
+			otro = Matriz.new(other.fil, other.col)
+			otro = other + otro
+			return self * otro
+		end
+		
+		yo = Matriz.new(fil, col)
+		yo = self + yo
+		mult = Matriz.new(self.fil, other.col)
 		for i in (0...self.fil) 
 			for j in (0...other.col)
-				sum = self[i][0] * other[0][j]
+				sum = yo[i][0] * other[0][j]
 				for k in (1...self.col)
-					sum += self[i][k] * other[k][j]
+					sum += yo[i][k] * other[k][j]
 				end
 				mult[i][j] = sum
 			end

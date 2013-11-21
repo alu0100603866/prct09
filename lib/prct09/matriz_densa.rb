@@ -60,19 +60,26 @@ class Matriz_densa < Matriz
 
         def *(m)
                 raise IndexError unless (self.col == m.fil) #num de col de la primera tiene que ser igual a num de fil de lasegunda.
-
-                mult = Matriz.new(self.fil, m.col)
-
-                for i in (0...self.fil) 
+				
+				if(m.instance_of? Matriz_dispersa)
+					otro = Matriz.new(m.fil, m.col)
+					otro = m + otro
+					return self * otro
+				
+					
+				else
+					mult = Matriz.new(self.fil, m.col)
+	
+					for i in (0...self.fil) 
                         for j in (0...m.col)
-                                sum = self[i][0] * m[0][j]
-                                for k in (1...self.col)
-                                        sum += self[i][k] * m[k][j]
-                                end
-                                mult[i][j] = sum
+							sum = self[i][0] * m[0][j]
+							for k in (1...self.col)
+								sum += self[i][k] * m[k][j]
+							end
+							mult[i][j] = sum
                         end
-                end  
-
+					end  
+				end
                 return mult        
         end
 		

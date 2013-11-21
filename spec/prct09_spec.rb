@@ -60,6 +60,15 @@
 		it "Multiplicar matrices en forma de fraccion" do
 			(@m.new(2,2, @f.new(1,2), @f.new(1,3), @f.new(1,4), @f.new(1,5)) * @m.new(2,2, @f.new(1,2), @f.new(2,3), @f.new(3,4), @f.new(4,5))).should == @m.new(2,2,@f.new(1,2), @f.new(3,5), @f.new(11,40), @f.new(49,150))
 		end
+		
+		it "Multiplicar matrices dispersa * densa, densa * dispersa" do
+	 		(@md.new(2,2,0,0,1,1) * @m.new(2,2,2,0,3,5)).should == @m.new(2,2,0,0,5,5)
+			(@m.new(2,2,2,3,4,5) * @md.new(2,3,2,2,2,2,2,2)).should == @m.new(2,3,10,10,10,18,18,18)
+		end
+		
+		it "Multiplicar matrices dispersa * dispersa" do
+	 		(@md.new(2,2,0,0,1,1) * @md.new(2,2,2,0,3,5)).should == @m.new(2,2,0,0,5,5)
+		end
 	end
 	
 	describe "Operaciones con matriz hibridas" do
