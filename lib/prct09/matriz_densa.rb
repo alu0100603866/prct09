@@ -17,17 +17,23 @@ class Matriz_densa < Matriz
 #         end
 
         def +(m)
-                raise IndexError unless ((self.fil == m.fil) && (self.col == m.col)) #Las dimensiones tienes que ser iguales
+				if(m.instance_of? Matriz_dispersa)
+					return m + self 
+                        
+                else
+					raise IndexError unless ((self.fil == m.fil) && (self.col == m.col)) #Las dimensiones tienes que ser iguales
+	
+				
+					suma = Matriz.new(self.fil, self.col)
 
-                suma = Matriz.new(self.fil, self.col)
-
-                for i in (0...self.fil)
+					for i in (0...self.fil)
                         for j in (0...self.col)
-                                suma[i][j] = self[i][j] + m[i][j]
+							suma[i][j] = self[i][j] + m[i][j]
                         end
-                end  
+					end  
 
                 return suma                
+				end
         end
 
 

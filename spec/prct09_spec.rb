@@ -35,8 +35,12 @@
 		end
 		
 		it "Suma de matrices densa + dispersa, dispersa + densa" do
-			#(@m.new(2,2,2) + @md.new(2,2,0,0,0,1)).should == @m1.new(2,2,2,2,2,3)   
+			(@m.new(2,2,2) + @md.new(2,2,0,0,0,1)).should == @m1.new(2,2,2,2,2,3)   
 			(@md.new(2,3,0,0,0,4,0,0) + @m.new(2,3,1)).should == @m.new(2,3,1,1,1,5,1,1)
+		end
+		
+		it "Suma de matrices dispersa + dispersa" do
+			(@md.new(2,2,0,0,1,1) + @md.new(2,2,0,0,0,1)).should == @m1.new(2,2,0,0,1,2)   
 		end
 	
 		it "Resta de matrices" do

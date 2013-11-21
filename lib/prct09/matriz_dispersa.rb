@@ -87,10 +87,18 @@ class Matriz_dispersa < Matriz
 	
 	#SUMA
 	def +(other)
-		raise IndexError unless ((self.fil == other.fil) && (self.col == other.col))
-# 		if((self.fil == other.fil) && (self.col == other.col))
-		contador = 0
-		suma = Matriz.new(self.fil, self.col)
+	
+		if(other.instance_of? Matriz_dispersa)
+			suma = Matriz.new(fil,col)
+			suma = self + suma
+			suma = other + suma
+			return suma
+                        
+		else
+			raise IndexError unless ((self.fil == other.fil) && (self.col == other.col))
+#			if((self.fil == other.fil) && (self.col == other.col))
+			contador = 0
+			suma = Matriz.new(self.fil, self.col)
 		
 			for i in 0...self.fil do
 				for j in 0...self.col do
@@ -102,7 +110,7 @@ class Matriz_dispersa < Matriz
 					end
 				end
 			end
-			
+		end
 # 		end
 		return suma
 	end
