@@ -41,6 +41,10 @@ class Fraccion
 	
 	#Suma
 	def +(other)
+		if (other.instance_of? Fixnum)
+			return Fraccion.new(@num+(@dem * other),@dem)
+		end
+	
 		if(@dem == other.dem)
 		  Fraccion.new(@num + other.num, @dem)
 		else
@@ -50,6 +54,9 @@ class Fraccion
 	
 	#Resta
 	def -(other)
+		if (other.instance_of? Fixnum)
+			return Fraccion.new(@num+(@dem * other),@dem)
+		end
 		if(@dem == other.dem)
 		  Fraccion.new(@num - other.num, @dem)
 		else
@@ -59,6 +66,9 @@ class Fraccion
 	
 	#Multiplicación
 	def *(other)
+		if (other.instance_of? Fixnum)
+			return Fraccion.new(@num * other,@dem)
+		end
 		Fraccion.new(@num * other.num, @dem * other.dem)
 	end
 	
@@ -92,5 +102,9 @@ class Fraccion
 	def >=(other)
 		(@num * other.dem) >= (@dem * other.num)
 	end
+	
+	def coerce(other)
+     return self, other
+   end
 
 end

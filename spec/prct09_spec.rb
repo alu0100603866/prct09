@@ -72,12 +72,16 @@
 	end
 	
 	describe "Operaciones con matriz hibridas" do
+	
 		it "Suma de matrices entera-racional, racional-entera" do
-			
+			(@m.new(2,2, @f.new(1,2), @f.new(1,3), @f.new(1,4), @f.new(1,5)) + @m.new(2,2,1,1,1,1)).should == @m.new(2,2, @f.new(3,2), @f.new(4,3), @f.new(5,4), @f.new(6,5))
+			(@m.new(2,2,1,1,1,1) + @m.new(2,2, @f.new(1,2), @f.new(1,3), @f.new(1,4), @f.new(1,5))).should == @m.new(2,2, @f.new(3,2), @f.new(4,3), @f.new(5,4), @f.new(6,5))
 		end
+
 	
 		it "Multiplicar matrices entera-racional, racional-entera" do
-	 		
+			(@m.new(2,2, @f.new(1,2), @f.new(1,3), @f.new(1,4), @f.new(1,5)) * @m.new(2,2, 1, 1, 1, 1)).should == @m.new(2,2, @f.new(5,6), @f.new(5,6), @f.new(9,20), @f.new(9,20))
+			(@m.new(2,2, 1, 1, 1, 1) * @m.new(2,2, @f.new(1,2), @f.new(1,3), @f.new(1,4), @f.new(1,5))).should == @m.new(2,2, @f.new(3,4), @f.new(8,15), @f.new(3,4), @f.new(8,15))
 		end
 		
 	end
