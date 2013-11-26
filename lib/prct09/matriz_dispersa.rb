@@ -100,8 +100,9 @@ class Matriz_dispersa < Matriz
 			contador = 0
 			suma = Matriz.new(self.fil, self.col)
 		
-			for i in 0...self.fil do
-				for j in 0...self.col do
+
+			self.fil.times do |i|
+				self.col.times do |j|
 					if (@pos_fil[contador] == i && @pos_col[contador] == j)
 						suma[i][j] = @dat[contador] + other[i][j] 
 						contador += 1
@@ -132,8 +133,9 @@ class Matriz_dispersa < Matriz
 			contador = 0
 			resta = Matriz.new(self.fil, self.col)
 		
-			for i in 0...self.fil do
-				for j in 0...self.col do
+
+			self.fil.times do |i|
+				self.col.times do |j|
 					if (@pos_fil[contador] == i && @pos_col[contador] == j)
 						resta[i][j] = @dat[contador] - other[i][j] 
 						contador += 1
