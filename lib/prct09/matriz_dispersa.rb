@@ -182,8 +182,9 @@ class Matriz_dispersa < Matriz
 	
 	#MAYOR
 	def mayor
+		may = 0
 		contador = 0
-		for i in 0...@dat.size do
+		@dat.size.times do |i|
 			if (may == 0)
 				may = @dat[contador]
 			elsif (may < @dat[contador])
@@ -199,8 +200,9 @@ class Matriz_dispersa < Matriz
 	
 	#MENOR
 	def menor
+		men = 0
 		contador = 0
-		for i in 0...@dat.size do
+		@dat.size.times do |i|
 			if (men == 0)
 				men = @dat[contador]
 			elsif (men > @dat[contador])

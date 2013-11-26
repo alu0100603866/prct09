@@ -86,6 +86,17 @@
 		
 	end
 		
-	
+
+	describe "Mayor y menor" do
+
+		it "Menor de matriz dispersa" do
+			(@md.new(3,3,3,5,6,7,8,9,1,3,2).menor).should == 1
+		end
+
+		it "Mayor de matriz dispersa" do
+			(@md.new(3,3,1,2,3,4,5,4,3,2,1).mayor).should == 5
+		end
+	end	
+
 
  end
