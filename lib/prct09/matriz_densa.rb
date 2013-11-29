@@ -115,7 +115,23 @@ class Matriz_densa < Matriz
 				return men
 		end
 		
-	
+
+		
+		#Modificación
+		def encontrar
+		  i = 0
+		    self.fil.times do |i|
+		      j = 0
+		      self.col.times do |j|
+			if(yield(@datos[i][j]))
+			   return i,j
+			end
+			j+=1
+		      end
+		    i+=1
+		  end
+		return nil
+		end
+		
+		
 end
-
-

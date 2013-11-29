@@ -97,6 +97,12 @@
 			(@md.new(3,3,1,2,3,4,5,4,3,2,1).mayor).should == 5
 		end
 	end	
+	
+	describe "Modificacion" do
+	  it "Encontrar" do
+	    (@m.new(3,3,1,2,3,4,5,6,7,8,9).encontrar{|e| e*e >= 16}).should eq ([1,0])
+	  end
+	end
 
 
  end
