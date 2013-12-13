@@ -1,6 +1,6 @@
 require 'prct09/matriz.rb'
 require 'prct09/matriz_dispersa.rb'
-require 'prct09/leng_matriz.rb'
+# require 'prct09/leng_matriz.rb'
 class Matriz_densa < Matriz
 
 	attr_accessor :fil, :col, :m

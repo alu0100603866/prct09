@@ -1,15 +1,14 @@
-require 'prct09/matriz_densa.rb'
+require 'prct09/matriz_densa'
 
-class Matriz_DSL < Matriz 
+class Matriz_DSL
   def initialize(instruccion, &block)
     @instruccion = instruccion
     @option = Array.new
     @tipo = "densa"
     @matrices = Array.new
     
-    
     instance_eval(&block)
-    
+
    
     
   end
@@ -20,6 +19,7 @@ class Matriz_DSL < Matriz
     posiciones = Array.new
     x = 2
     y = 0
+    posiciones[0] = 0
     
     matriz.each_char do |i|
       if (i == /[0-9]/)
@@ -28,16 +28,18 @@ class Matriz_DSL < Matriz
 	n += 1
       end
       if (i == "]")
-	posiciones[0] = n
+	if (posiciones[0] != 0)
+	  posiciones[0] = n
+	end
 	m += 1
       end
     end
     
     posiciones[1] = m-1
     
-#     if (@tipo == "densa")
-#      @matrices[y] = Matriz_densa.new(posiciones)
-#     end
+    if (@tipo == "densa")
+     @matrices[y] = Matriz_densa.new(posiciones)
+    end
   end
   
   def to_s
